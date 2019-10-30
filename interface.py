@@ -1,55 +1,62 @@
+from tkinter import *
+import tkinter as tk
+from tkinter import tix, ttk
 import mysql.connector
-import requests
-from pprint import pprint
-from Constant import *
 
-def get_food(self, nb_fd):
-    '''Parameters and request to the URL API'''
-    for i in range(1,6):
-        nb_ini_cat = i
-        nb_food = nb_fd
-        cursor = self.db.cursor(buffered=True)
-        cat_nb_1 = str(nb_ini_cat)
-        selec_cat = ("SELECT category FROM Category WHERE idCategory = "+cat_nb_1)
-        cursor.execute(selec_cat)
-        cat_saved = str(cursor.fetchone()[0]) #indexation
-        payload = {
-        'action': 'process',
-        'tagtype_0': 'categories', #which subject is selected (categories)
-        'tag_contains_0': 'contains', #contains or not
-        'tag_0': '{}'.format(cat_saved), #parameters to choose
-        'sort_by': 'unique_scans_n',
-        'page_size': '{}'.format(nb_food),
-        'countries': 'France',
-        'json': 1,
-        'page': 1
-        }
-        r_food = requests.get('https://fr.openfoodfacts.org/cgi/search.pl', params=payload)
-        food_json = r_food.json()
-        test2 = food_json.get('products')
 
-        food_id = ("SELECT idCategory FROM Category WHERE idCategory = "+cat_nb_1)
-        cursor.execute(food_id)
-        food_id_saved = cursor.fetchone()[0]
+#creation window
+window = tk.Tk()
 
-        for x in range(nb_food) :
+#format window
+window.title("Database OpenFoodFact") 
+window.geometry("950x400")
 
-            prod_name_saved = [d.get('product_name_fr') for d in test2] #get product name in french
-            prod_name = str(prod_name_saved[x])
-            ingrdts_saved = [d.get('ingredients_text_fr') for d in test2] #get ingredients list in french
-            ingrdts = str(ingrdts_saved[x])
-            '''ingredts = unidecode.unidecode(ingrdts)'''
-            '''ingredts2 = ingredts.replace("'", "")'''
-            '''ingredts3 = ingredts.replace("*", "")'''
-            nutri_grd_saved = [d.get('nutrition_grade_fr') for d in test2] #get nutrigrade
-            nutri_grd = str(nutri_grd_saved[x])
-            bar_code_saved = [d.get('id') for d in test2] #get barcode
-            bar_code = bar_code_saved[x]
-            add_food =(
-                "INSERT INTO Food"
-                "(idCategory, category, food, ingredient, nutriscore, bar_code)"
-                "VALUES (%s, %s, %s, %s, %s, %s)")
-            data = (food_id_saved, cat_saved, prod_name, ingrdts, nutri_grd, bar_code)
-            cursor.execute(add_food, data)
-            self.db.commit()
-        cursor.close()
+lst = ["1", "2"]
+
+def __inti__(self):
+	second_window()
+
+def second_window():
+	second_window = tk.Toplevel(window, bg = "#FAFAFA")
+	second_window.geometry("920x400")
+	labelCategory = tk.Label(second_window, text = "Catégories : ", bg = "#FAFAFA").grid(row=0, column=1)
+	MYSQL_USER = 'yohan'
+	MYSQL_HOST = 'localhost'
+	MYSQL_PWD = 'logitech'
+	MYSQL_DATABASE = 'OpenFoodFact'
+	connexion_data_base = mysql.connector.connect(user=MYSQL_USER, password=MYSQL_PWD, host=MYSQL_HOST, database=MYSQL_DATABASE)
+	cursor = connexion_data_base.cursor()
+	cursor.execute(" SELECT category FROM Category")
+	data = cursor.fetchall()
+	data = [d[0] for d in data] 
+	comboExample = ttk.Combobox(second_window, values=data, width=30).grid(row=1, column=1, padx=50, pady=10)
+	cursor.execute(" SELECT food FROM Food")
+	food = str(cursor.fetchall())
+	listbox = Listbox(second_window).grid(row=2, column=2)
+	for i in range(11):
+		listbox.insert(food)
+	cursor.close()
+	#labelDescription = tk.Label(second_window, text = "Description")
+	second_window.mainloop()
+
+
+#creation title
+label_title = Label(window, text="Bienvenue dans la base de donnée OpenFoodFacts", font=("Helvetica", 40), fg="#41B77F").pack()
+
+#creation image
+width = 300
+height = 300
+image = PhotoImage(file="/Users/macbookair/Documents/Projet_5/PureBeurre/openfoodfacts-logo-fr-178x150.png")
+canvas = Canvas(window, width=width, height=height)
+canvas.create_image(width/2, height/2, image=image)
+canvas.pack()
+
+#creation button
+button_connect = tk.Button(window, text="Trouver un aliment à remplacer", command=second_window).pack(side=LEFT, padx = 100)
+button_connect2 = tk.Button(window, text="Retrouver mes aliments substitués").pack(side=RIGHT, padx = 100)
+
+# print window
+window.mainloop()
+
+
+

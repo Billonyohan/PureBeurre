@@ -142,7 +142,6 @@ class dataBaseMySql:
 				CREATE TABLE Substitute (
 					id int(11) NOT NULL AUTO_INCREMENT,
 					idCategory int(15) DEFAULT NULL,
-					category varchar(100) DEFAULT NULL,
 					substitute varchar(100) DEFAULT NULL,
 					ingredients varchar(5000) DEFAULT NULL,
 					store varchar(1000) DEFAULT NULL,
@@ -174,7 +173,7 @@ class dataBaseMySql:
 		def insert_substitute_food(self, idCategory, food, ingredients, store, link):
 			self.cursor = self.connexion_data_base.cursor()
 			add_substitute = (""" INSERT INTO Substitute (idCategory, substitute, ingredients, store, link)
-								VALUES("{cat_save}", "{name_food}", "{nb_ingredients}", "{nb_store}", "{product_link}")""".format(cat_save=idCategory, name_food=food, nb_ingredients=ingredients, nb_store=store, product_link=link))
+								VALUES("{category_save}", "{name_food}", "{nb_ingredients}", "{nb_store}", "{product_link}")""".format(category_save=idCategory, name_food=food, nb_ingredients=ingredients, nb_store=store, product_link=link))
 			self.cursor.execute(add_substitute)
 			self.connexion_data_base.commit()
 			self.cursor.close()

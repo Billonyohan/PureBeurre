@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter as tk
 from tkinter import tix, ttk
 import mysql.connector
+from Constant import*
 
 
 #creation window
@@ -19,22 +20,17 @@ def __inti__(self):
 def second_window():
 	second_window = tk.Toplevel(window, bg = "#FAFAFA")
 	second_window.geometry("920x400")
-	labelCategory = tk.Label(second_window, text = "Catégories : ", bg = "#FAFAFA").grid(row=0, column=1)
-	MYSQL_USER = 'yohan'
-	MYSQL_HOST = 'localhost'
-	MYSQL_PWD = 'logitech'
-	MYSQL_DATABASE = 'OpenFoodFact'
+	labelCategory = tk.Label(second_window, text = "Catégories : ", bg = "#FAFAFA").grid(row=0, column=0)
 	connexion_data_base = mysql.connector.connect(user=MYSQL_USER, password=MYSQL_PWD, host=MYSQL_HOST, database=MYSQL_DATABASE)
 	cursor = connexion_data_base.cursor()
-	cursor.execute(" SELECT category FROM Category")
+	cursor.execute(" SELECT category FROM Category ORDER BY category ASC")
 	data = cursor.fetchall()
 	data = [d[0] for d in data] 
-	comboExample = ttk.Combobox(second_window, values=data, width=30).grid(row=1, column=1, padx=50, pady=10)
-	cursor.execute(" SELECT food FROM Food")
+	comboExample = ttk.Combobox(second_window, values=data, width=30).grid(row=0, column=1)
+	cursor.execute(" SELECT food FROM Food, Category WHERE idCategory = idCategory.category ")
 	food = str(cursor.fetchall())
-	listbox = Listbox(second_window).grid(row=2, column=2)
-	for i in range(11):
-		listbox.insert(food)
+	listbox = Listbox(second_window, food).grid()
+
 	cursor.close()
 	#labelDescription = tk.Label(second_window, text = "Description")
 	second_window.mainloop()
@@ -46,7 +42,7 @@ label_title = Label(window, text="Bienvenue dans la base de donnée OpenFoodFact
 #creation image
 width = 300
 height = 300
-image = PhotoImage(file="/Users/macbookair/Documents/Projet_5/PureBeurre/openfoodfacts-logo-fr-178x150.png")
+image = PhotoImage(file="/Users/macbookair/Documents/GitHub/PureBeurre/PureBeurre/openfoodfacts-logo-fr-178x150.png")
 canvas = Canvas(window, width=width, height=height)
 canvas.create_image(width/2, height/2, image=image)
 canvas.pack()

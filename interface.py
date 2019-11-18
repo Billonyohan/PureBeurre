@@ -57,7 +57,6 @@ def substitute_food():
 		labelIngredients = tk.Label(third_window, text= "Ingredients", wraplength=350, bg="#C9DFDC").grid(row=2, column=4, columnspan=2, sticky=N+E+S+W)
 		description_food = tk.Label(third_window, text= data_ingredients[0], wraplength=350, bg="#FAFAFA").grid(row=3, column=4, rowspan=10, columnspan=2, sticky=N+S+E+W)
 
-
 def saved_substitute():
 	global	get_index_food
 	global get_index_substitute
@@ -80,19 +79,34 @@ def get_substitute():
 		data_susbstitute = cursor.fetchall()
 		data_susbstitute = [d[0] for d in data_susbstitute]
 		label_ingredients = tk.Label(second_window, text= "Ingredients", wraplength=350, bg="#C9DFDC").grid(row=4, column=5, columnspan=2, sticky=N+E+S+W)
-		data_ingredients_susbstitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=5, columnspan=2, sticky=N+S+E+W)
-		description_susbtitute = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=6, column=5, columnspan=2, sticky=N+S+E+W)
+		data_ingredients_susbstitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=5, rowspan=14, columnspan=2, sticky=N+S+E+W)
+		space = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=20, column=5, columnspan=2, sticky=N+S+E+W)
+		cursor.execute("SELECT nutriscore FROM substitute WHERE id ="+get_index_substitute)
+		data_nutriscore = cursor.fetchall()
+		data_nutriscore = [d[0] for d in data_nutriscore]
+		label_ingredients = tk.Label(second_window, text= "Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=21, column=5, sticky=N+E+S+W)
+		if data_nutriscore[0] == "a":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#88FE00").grid(row=21, column=6, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "b":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#22A541").grid(row=21, column=6, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "c":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#DCFE00").grid(row=21, column=6, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "d":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#FEAA00").grid(row=21, column=6, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "e":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#FE0000").grid(row=21, column=6, sticky=N+S+E+W)
+		space = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=22, column=5, columnspan=2, sticky=N+S+E+W)
 		cursor.execute("SELECT store FROM substitute WHERE id ="+get_index_substitute)
 		data_susbstitute = cursor.fetchall()
 		data_susbstitute = [d[0] for d in data_susbstitute]
-		label_ingredients = tk.Label(second_window, text= "Store", wraplength=350, bg="#C9DFDC").grid(row=7, column=5, columnspan=2, sticky=N+E+S+W)
-		data_store_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=8, column=5, columnspan=2, sticky=N+S+E+W)
-		space_column= tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=9, column=5, columnspan=2, sticky=N+S+E+W)
+		label_ingredients = tk.Label(second_window, text= "Store", wraplength=350, bg="#C9DFDC").grid(row=23, column=5, columnspan=2, sticky=N+E+S+W)
+		data_store_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=24, column=5, columnspan=2, sticky=N+S+E+W)
+		space = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=25, column=5, columnspan=2, sticky=N+S+E+W)
 		cursor.execute("SELECT link FROM substitute WHERE id ="+get_index_substitute)
 		data_susbstitute = cursor.fetchall()
 		data_susbstitute = [d[0] for d in data_susbstitute]
-		label_ingredients = tk.Label(second_window, text= "Link", wraplength=350, bg="#C9DFDC").grid(row=10, column=5, columnspan=2, sticky=N+E+S+W)
-		data_link_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=11, column=5, columnspan=2, sticky=N+S+E+W)
+		label_ingredients = tk.Label(second_window, text= "Link", wraplength=350, bg="#C9DFDC").grid(row=26, column=5, columnspan=2, sticky=N+E+S+W)
+		data_link_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=27, column=5, columnspan=2, sticky=N+S+E+W)
 		second_window.mainloop()
 
 	elif get_index >= 2:
@@ -105,19 +119,34 @@ def get_substitute():
 		data_susbstitute = cursor.fetchall()
 		data_susbstitute = [d[0] for d in data_susbstitute]
 		label_ingredients = tk.Label(second_window, text= "Ingredients", wraplength=350, bg="#C9DFDC").grid(row=4, column=5, columnspan=2, sticky=N+E+S+W)
-		data_ingredients_susbstitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=5, columnspan=2, sticky=N+S+E+W)
-		description_susbtitute = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=6, column=5, columnspan=2, sticky=N+S+E+W)
+		data_ingredients_susbstitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=5, rowspan=15, columnspan=2, sticky=N+S+E+W)
+		space = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=20, column=5, columnspan=2, sticky=N+S+E+W)
+		cursor.execute("SELECT nutriscore FROM substitute WHERE id ="+get_index_substitute)
+		data_nutriscore = cursor.fetchall()
+		data_nutriscore = [d[0] for d in data_nutriscore]
+		label_ingredients = tk.Label(second_window, text= "Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=21, column=5, sticky=N+E+S+W)
+		if data_nutriscore[0] == "a":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#88FE00").grid(row=21, column=6, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "b":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#22A541").grid(row=21, column=6, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "c":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#DCFE00").grid(row=21, column=6, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "d":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#FEAA00").grid(row=21, column=6, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "e":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#FE0000").grid(row=21, column=6, sticky=N+S+E+W)
+		space = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=22, column=5, columnspan=2, sticky=N+S+E+W)
 		cursor.execute("SELECT store FROM substitute WHERE id ="+get_index_substitute)
 		data_susbstitute = cursor.fetchall()
 		data_susbstitute = [d[0] for d in data_susbstitute]
-		label_ingredients = tk.Label(second_window, text= "Store", wraplength=350, bg="#C9DFDC").grid(row=7, column=5, columnspan=2, sticky=N+E+S+W)
-		data_store_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=8, column=5, columnspan=2, sticky=N+S+E+W)
-		space_column= tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=9, column=5, columnspan=2, sticky=N+S+E+W)
+		label_ingredients = tk.Label(second_window, text= "Store", wraplength=350, bg="#C9DFDC").grid(row=23, column=5, columnspan=2, sticky=N+E+S+W)
+		data_store_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=24, column=5, columnspan=2, sticky=N+S+E+W)
+		space = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=25, column=5, columnspan=2, sticky=N+S+E+W)
 		cursor.execute("SELECT link FROM substitute WHERE id ="+get_index_substitute)
 		data_susbstitute = cursor.fetchall()
 		data_susbstitute = [d[0] for d in data_susbstitute]
-		label_ingredients = tk.Label(second_window, text= "Link", wraplength=350, bg="#C9DFDC").grid(row=10, column=5, columnspan=2, sticky=N+E+S+W)
-		data_link_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=11, column=5, columnspan=2, sticky=N+S+E+W)
+		label_ingredients = tk.Label(second_window, text= "Link", wraplength=350, bg="#C9DFDC").grid(row=26, column=5, columnspan=2, sticky=N+E+S+W)
+		data_link_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=27, column=5, columnspan=2, sticky=N+S+E+W)
 		second_window.mainloop()
 
 def get_ingredients():
@@ -133,7 +162,34 @@ def get_ingredients():
 		data_ingredients = cursor.fetchall()
 		data_ingredients = [d[0] for d in data_ingredients]
 		label_ingredients = tk.Label(second_window, text= "Ingredients", wraplength=350, bg="#C9DFDC").grid(row=4, column=0, columnspan=2, sticky=N+E+S+W)
-		description_food = tk.Label(second_window, text= data_ingredients[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=0,rowspan=15, columnspan=2, sticky=N+S+E+W)
+		description_food = tk.Label(second_window, text= data_ingredients[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=0, rowspan=15, columnspan=2, sticky=N+S+E+W)
+		space = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=20, column=0, columnspan=2, sticky=N+S+E+W)	
+		cursor.execute("SELECT nutriscore FROM Food WHERE id ="+get_index_food)
+		data_nutriscore = cursor.fetchall()
+		data_nutriscore = [d[0] for d in data_nutriscore]
+		label_ingredients = tk.Label(second_window, text= "Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=21, column=0, sticky=N+E+S+W)
+		if data_nutriscore[0] == "a":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#88FE00").grid(row=21, column=1, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "b":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#22A541").grid(row=21, column=1, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "c":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#DCFE00").grid(row=21, column=1, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "d":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#FEAA00").grid(row=21, column=1, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "e":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#FE0000").grid(row=21, column=1, sticky=N+S+E+W)
+		space = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=22, column=0, columnspan=2, sticky=N+S+E+W)	
+		cursor.execute("SELECT store FROM food WHERE id ="+get_index_food)
+		data_susbstitute = cursor.fetchall()
+		data_susbstitute = [d[0] for d in data_susbstitute]
+		label_ingredients = tk.Label(second_window, text= "Store", wraplength=350, bg="#C9DFDC").grid(row=23, column=0, columnspan=2, sticky=N+E+S+W)
+		data_store_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=24, column=0, columnspan=2, sticky=N+S+E+W)
+		space_column= tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=25, column=0, columnspan=2, sticky=N+S+E+W)
+		cursor.execute("SELECT link FROM food WHERE id ="+get_index_food)
+		data_susbstitute = cursor.fetchall()
+		data_susbstitute = [d[0] for d in data_susbstitute]
+		label_ingredients = tk.Label(second_window, text= "Link", wraplength=350, bg="#C9DFDC").grid(row=26, column=0, columnspan=2, sticky=N+E+S+W)
+		data_link_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=27, column=0, columnspan=2, sticky=N+S+E+W)
 		second_window.mainloop()
 	elif get_index >= 2:
 		get_index_food = comboExample1.current()
@@ -146,6 +202,33 @@ def get_ingredients():
 		data_ingredients = [d[0] for d in data_ingredients]
 		label_ingredients = tk.Label(second_window, text= "Ingredients", wraplength=350, bg="#C9DFDC").grid(row=4, column=0, columnspan=2, sticky=N+E+S+W)
 		description_food = tk.Label(second_window, text= data_ingredients[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=0, rowspan=15, columnspan=2, sticky=N+S+E+W)
+		space = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=20, column=0, columnspan=2, sticky=N+S+E+W)	
+		cursor.execute("SELECT nutriscore FROM Food WHERE id ="+get_index_food)
+		data_nutriscore = cursor.fetchall()
+		data_nutriscore = [d[0] for d in data_nutriscore]
+		label_ingredients = tk.Label(second_window, text= "Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=21, column=0, sticky=N+E+S+W)
+		if data_nutriscore[0] == "a":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#88FE00").grid(row=21, column=1, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "b":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#22A541").grid(row=21, column=1, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "c":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#DCFE00").grid(row=21, column=1, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "d":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#FEAA00").grid(row=21, column=1, sticky=N+S+E+W)
+		elif data_nutriscore[0] == "e":
+			description_food = tk.Label(second_window, text= data_nutriscore[0], wraplength=350, bg="#FE0000").grid(row=21, column=1, sticky=N+S+E+W)
+		space = tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=22, column=0, columnspan=2, sticky=N+S+E+W)	
+		cursor.execute("SELECT store FROM food WHERE id ="+get_index_food)
+		data_susbstitute = cursor.fetchall()
+		data_susbstitute = [d[0] for d in data_susbstitute]
+		label_ingredients = tk.Label(second_window, text= "Store", wraplength=350, bg="#C9DFDC").grid(row=23, column=0, columnspan=2, sticky=N+E+S+W)
+		data_store_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=24, column=0, columnspan=2, sticky=N+S+E+W)
+		space_column= tk.Label(second_window, text= "  ", wraplength=350, bg="#FAFAFA").grid(row=25, column=0, columnspan=2, sticky=N+S+E+W)
+		cursor.execute("SELECT link FROM food WHERE id ="+get_index_food)
+		data_susbstitute = cursor.fetchall()
+		data_susbstitute = [d[0] for d in data_susbstitute]
+		label_ingredients = tk.Label(second_window, text= "Link", wraplength=350, bg="#C9DFDC").grid(row=26, column=0, columnspan=2, sticky=N+E+S+W)
+		data_link_susbtitute = tk.Label(second_window, text= data_susbstitute[0], wraplength=350, bg="#FAFAFA").grid(row=27, column=0, columnspan=2, sticky=N+S+E+W)
 		second_window.mainloop()
 
 
@@ -205,7 +288,7 @@ button_choice_category = Button(second_window, text="Valider", command=get_categ
 button_choice_subsitute = tk.Button(second_window, text="Valider", command=get_substitute).grid(row=1, column=6)
 labelFood = tk.Label(second_window, text = "Aliments : ", relief="solid", bg="#FEFEFE").grid(row=2, column=0)
 label_subsitute = tk.Label(second_window, text="Aliments à substituer :", relief="solid", bg="#FEFEFE").grid(row=0, column=5)
-button_subsitute_food = tk.Button(second_window, text="Substituer aliment", command=saved_substitute, bg="#FAFAFA").grid(row=16, column=5, sticky="w")
-button_subsitute = tk.Button(second_window, text="Historique", command=substitute_food, bg="#FAFAFA").grid(row=16, column=6, sticky="e")
+button_subsitute_food = tk.Button(second_window, text="Substituer aliment", command=saved_substitute, bg="#FAFAFA").grid(row=29, column=5, sticky="w")
+button_subsitute = tk.Button(second_window, text="Historique", command=substitute_food, bg="#FAFAFA").grid(row=29, column=6, sticky="e")
 space = tk.Label(second_window, text="            ", bg="#CECECE"). grid(row=0, column=4)
 second_window.mainloop()

@@ -59,14 +59,17 @@ class OpenFoodFact :
 
 			for j in range(nb_food) :
 				food = [d.get('product_name_fr') for d in data_food] 
-				ingredients = [d.get('ingredients_text_fr') for d in data_food] 
-				self.data_base.insert_data_food(nb_category, food[j], ingredients[j])
+				ingredients = [d.get('ingredients_text_fr') for d in data_food]
+				nutriscore = [d.get('nutriscore_grade') for d in data_food]
+				store = [d.get('stores') for d in data_food]
+				link = [d.get('link') for d in data_food]
+				self.data_base.insert_data_food(nb_category, food[j], ingredients[j], nutriscore[j], store[j], link[j])
 
 	def get_substitute(self):
 
 		for i in range(1, 11):
 			nb_init_substitute = i
-			nb_substitute = 25
+			nb_substitute = 35
 			cursor = self.connexion_data_base.cursor()
 			nb_category = str(nb_init_substitute)
 			select_category = ("SELECT category FROM Category WHERE idCategory = "+nb_category)
@@ -90,12 +93,13 @@ class OpenFoodFact :
 			cursor.execute(substitute_id)
 			food_id_saved = cursor.fetchone()[0]
 
-			for j in range(5, 25):
+			for j in range(10, 35):
 				food = [d.get('product_name_fr') for d in data_substitute] 
 				ingredients = [d.get('ingredients_text_fr') for d in data_substitute] 
+				nutriscore = [d.get('nutriscore_grade') for d in data_substitute]
 				store = [d.get('stores') for d in data_substitute]
 				link = [d.get('link') for d in data_substitute]
-				self.data_base.insert_substitute_food(nb_category, food[j], ingredients[j], store[j], link[j])
+				self.data_base.insert_substitute_food(nb_category, food[j], ingredients[j], nutriscore[j], store[j], link[j])
 
 
 
@@ -134,6 +138,9 @@ class dataBaseMySql:
 					idCategory int(15) DEFAULT NULL, 
 					food varchar(400) NOT NULL,
 					ingredients varchar(6000),
+					nutriscore varchar(10) DEFAULT NULL,
+					store varchar(1000) DEFAULT NULL,
+					link varchar(1000) DEFAULT NULL,
 					PRIMARY KEY (id)
 					)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 					""")
@@ -144,6 +151,7 @@ class dataBaseMySql:
 					idCategory int(15) DEFAULT NULL,
 					substitute varchar(100) DEFAULT NULL,
 					ingredients varchar(5000) DEFAULT NULL,
+					nutriscore varchar(10) DEFAULT NULL,
 					store varchar(1000) DEFAULT NULL,
 					link varchar(1000) DEFAULT NULL,
 					PRIMARY KEY (id)
@@ -161,19 +169,19 @@ class dataBaseMySql:
 			self.connexion_data_base.commit()
 			self.cursor.close()
 
-		def insert_data_food(self, idCategory, food, ingredients):
+		def insert_data_food(self, idCategory, food, ingredients, nutriscore, store, link):
 			self.cursor = self.connexion_data_base.cursor()
-			add_food = (""" INSERT INTO Food (idCategory, food, ingredients)
-								VALUES("{cat_save}", "{name_food}", "{nb_ingredients}")""".format(cat_save=idCategory, name_food=food, nb_ingredients=ingredients))
+			add_food = (""" INSERT INTO Food (idCategory, food, ingredients, nutriscore, store, link)
+								VALUES("{cat_save}", "{name_food}", "{nb_ingredients}", "{nutri_score}", "{nb_store}", "{product_link}")""".format(cat_save=idCategory, name_food=food, nb_ingredients=ingredients, nutri_score=nutriscore, nb_store=store, product_link=link))
 			
 			self.cursor.execute(add_food)
 			self.connexion_data_base.commit()
 			self.cursor.close()
 
-		def insert_substitute_food(self, idCategory, food, ingredients, store, link):
+		def insert_substitute_food(self, idCategory, food, ingredients, nutriscore, store, link):
 			self.cursor = self.connexion_data_base.cursor()
-			add_substitute = (""" INSERT INTO Substitute (idCategory, substitute, ingredients, store, link)
-								VALUES("{category_save}", "{name_food}", "{nb_ingredients}", "{nb_store}", "{product_link}")""".format(category_save=idCategory, name_food=food, nb_ingredients=ingredients, nb_store=store, product_link=link))
+			add_substitute = (""" INSERT INTO Substitute (idCategory, substitute, ingredients, nutriscore,  store, link)
+								VALUES("{category_save}", "{name_food}", "{nb_ingredients}", "{nutri_score}", "{nb_store}", "{product_link}")""".format(category_save=idCategory, name_food=food, nb_ingredients=ingredients, nutri_score=nutriscore, nb_store=store, product_link=link))
 			self.cursor.execute(add_substitute)
 			self.connexion_data_base.commit()
 			self.cursor.close()

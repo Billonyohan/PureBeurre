@@ -32,7 +32,7 @@ class OpenFoodFact :
 	def get_food(self):
 		for i in range(1,11):
 			nb_init_category = i
-			nb_food = 5
+			nb_food = 10
 			cursor = self.connexion_data_base.cursor()
 			nb_category = str(nb_init_category)
 			select_category = ("SELECT category FROM Category WHERE idCategory = "+nb_category)
@@ -66,7 +66,7 @@ class OpenFoodFact :
 
 		for i in range(1, 11):
 			nb_init_substitute = i
-			nb_substitute = 10
+			nb_substitute = 25
 			cursor = self.connexion_data_base.cursor()
 			nb_category = str(nb_init_substitute)
 			select_category = ("SELECT category FROM Category WHERE idCategory = "+nb_category)
@@ -90,7 +90,7 @@ class OpenFoodFact :
 			cursor.execute(substitute_id)
 			food_id_saved = cursor.fetchone()[0]
 
-			for j in range(5, 10):
+			for j in range(5, 25):
 				food = [d.get('product_name_fr') for d in data_substitute] 
 				ingredients = [d.get('ingredients_text_fr') for d in data_substitute] 
 				store = [d.get('stores') for d in data_substitute]

@@ -88,6 +88,7 @@ class OpenFoodFact :
 			}
 			request_substitute = requests.get('https://fr.openfoodfacts.org/cgi/search.pl', params=parameters)
 			subsitute_json = request_substitute.json()
+			pprint(subsitute_json)
 			data_substitute = subsitute_json.get('products')
 			substitute_id = ("SELECT idCategory FROM Category WHERE idCategory = "+nb_category)
 			cursor.execute(substitute_id)

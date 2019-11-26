@@ -10,7 +10,7 @@ select = mysql_select()
 
 class tkinterWindow:
 
-    def substitute_food():
+    def substitute_food_save():
         global index_food_save
         global index_substitute_save
         third_window = tk.Tk()
@@ -19,8 +19,10 @@ class tkinterWindow:
         label_subsitute = tk.Label(third_window, text="Aliments : ", relief="solid", bg="#FEFEFE").grid(row=0, column=0)
         data_susbstitute = []
         connexion_data_base = mysql.connector.connect(user=MYSQL_USER, password=MYSQL_PWD, host=MYSQL_HOST, database=MYSQL_DATABASE)
-        comboExampl = ttk.Combobox(third_window, values=select.substitute_save(), width=40).grid(row=0, column=1)
-        index = comboExampl.current()
+        combobox_substitute_save = ttk.Combobox(third_window, values=select.substitute_save(), width=40)
+        combobox_substitute_save.grid(row=0, column=1)
+        index = combobox_substitute_save.current()
+        index = str(index)
         label_ingredients = tk.Label(third_window, text="Ingredients", wraplength=350, bg="#C9DFDC").grid(row=1, column=0, columnspan=2, sticky=N+E+S+W)
         ingredients_substitute = tk.Label(third_window, text=select.ingredients_substitute_saved(index)[0], wraplength=350, bg="#FAFAFA")
         ingredients_substitute.grid(row=2, column=0, rowspan=10, columnspan=2, sticky=N+S+E+W)
@@ -64,7 +66,7 @@ class tkinterWindow:
         space_column = tk.Label(third_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=16, column=4, columnspan=2, sticky=N+S+E+W)
         label_ingredients = tk.Label(third_window, text="Link", wraplength=350, bg="#C9DFDC").grid(row=17, column=4, columnspan=2, sticky=N+E+S+W)
         link_food = tk.Label(third_window, text=select.link_food_saved(index)[0], wraplength=350, bg="#FAFAFA").grid(row=18, column=4, columnspan=2, sticky=N+S+E+W)
-        button_subsitute = tk.Button(third_window, text="Valider", command=substitute_food, relief="solid", bg="#FEFEFE").grid(row=0, column=2)
+        button_subsitute = tk.Button(third_window, text="Valider", command=substitute_food_save, relief="solid", bg="#FEFEFE").grid(row=0, column=2)
 
     def saved_substitute():
         global get_index_food
@@ -115,6 +117,8 @@ class tkinterWindow:
             ingredients_susstitute = tk.Label(second_window, text=select.ingredients_substitute(get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=5, rowspan=15, columnspan=2, sticky=N+S+E+W)
             space = tk.Label(second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=20, column=5, columnspan=2, sticky=N+S+E+W)
             label_ingredients = tk.Label(second_window, text="Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=21, column=5, sticky=N+E+S+W)
+            select_nutriscore_substitute = select.nutriscore_substitute(get_index_substitute)[0]
+            label_nutriscore_substitute = tk.Label(second_window, text=select.nutriscore_substitute(get_index_substitute)[0], wraplength=350, bg="#88FE00").grid(row=21, column=6, sticky=N+S+E+W)
             if select_nutriscore_substitute == "a":
                 nutriscore_substitute = label_nutriscore_substitute
             elif select_nutriscore_substitute == "b":
@@ -175,6 +179,8 @@ class tkinterWindow:
             description_food = tk.Label(second_window, text=select.ingredients_food(get_index_food)[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=0, rowspan=15, columnspan=2, sticky=N+S+E+W)
             space = tk.Label(second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=20, column=0, columnspan=2, sticky=N+S+E+W)
             label_ingredients = tk.Label(second_window, text="Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=21, column=0, sticky=N+E+S+W)
+            select_nutriscore_food = select.nutriscore_food(get_index_food)[0]
+            label_nutriscore_food = tk.Label(second_window, text=select.nutriscore_food(get_index_food)[0], wraplength=350, bg="#88FE00").grid(row=21, column=1, sticky=N+S+E+W)
             if select_nutriscore_food == "a":
                 nutriscore = label_nutriscore_food
             elif select_nutriscore_food == "b":
@@ -197,13 +203,16 @@ class tkinterWindow:
         global combobox_category
         global combobox_food
         global combobox_substitute
-        global get_index
         global second_window
+        global get_index
         get_index = combobox_category.current()
         get_index = get_index + 1
         get_index = str(get_index)
-        combobox_food = ttk.Combobox(second_window, values=select.select_food(get_index), width=30).grid(row=2, column=1)
-        combobox_substitute = ttk.Combobox(second_window, values=select.select_substitute(get_index), width=30).grid(row=0, column=6)
+        combobox_food = ttk.Combobox(second_window, values=select.select_food(get_index), width=30)
+        combobox_food.grid(row=2, column=1)
+        combobox_substitute = ttk.Combobox(second_window, values=select.select_substitute(get_index), width=30)
+        combobox_substitute.grid(row=0, column=6)
+
 
     if __name__ == "__main__":
         global combobox_category    
@@ -224,20 +233,22 @@ class tkinterWindow:
         canvas.pack()
         # creation button
         button_connect = tk.Button(window, text="Trouver un aliment à remplacer", command=window.destroy).pack(side=LEFT, padx=100)
-        button_connect2 = tk.Button(window, text="Retrouver mes aliments substitués", command=substitute_food).pack(side=RIGHT, padx=100)
+        button_connect2 = tk.Button(window, text="Retrouver mes aliments substitués", command=substitute_food_save).pack(side=RIGHT, padx=100)
         # print window
         window.mainloop()
         second_window = tk.Tk()
         second_window.configure(bg="#CECECE")
         second_window.geometry("950x650")
         label_category = tk.Label(second_window, text="Catégories : ", bg="#9E9E9E").grid(row=0, column=0)
-        combobox_category = ttk.Combobox(second_window, values=select.select_category(), width=30).grid(row=0, column=1)
+        combobox_category = ttk.Combobox(second_window, values=select.select_category(), width=30)
+        combobox_category.grid(row=0, column=1)
         label_food = tk.Label(second_window, text="Aliments : ", bg="#9E9E9E").grid(row=2, column=0)
         label_subsitute = tk.Label(second_window, text="Aliments à substituer :", bg="#9E9E9E").grid(row=0, column=5)
         button_choice_food = Button(second_window, text="Valider", command=get_ingredients).grid(row=3, column=1)
         button_choice_category = Button(second_window, text="Valider", command=get_category_food).grid(row=1, column=1)
         button_choice_subsitute = tk.Button(second_window, text="Valider", command=get_substitute).grid(row=1, column=6)
         button_subsitute_food = tk.Button(second_window, text="Substituer aliment", command=saved_substitute, bg="#FAFAFA").grid(row=28, column=5, sticky=W)
-        button_subsitute = tk.Button(second_window, text="Historique", command=substitute_food, bg="#FAFAFA").grid(row=28, column=6, sticky=E)
+        button_subsitute = tk.Button(second_window, text="Historique", command=substitute_food_save, bg="#FAFAFA").grid(row=28, column=6, sticky=E)
         space = tk.Label(second_window, text="            ", bg="#CECECE"). grid(row=0, column=4)
         second_window.mainloop()
+

@@ -14,6 +14,7 @@ class tkinterWindow:
         global index_food_save
         global index_substitute_save
         third_window = tk.Tk()
+        third_window.title("Database OpenFoodFact")
         third_window.configure(bg="#CECECE")
         third_window.geometry("950x350")
         label_subsitute = tk.Label(third_window, text="Aliments : ", relief="solid", bg="#FEFEFE").grid(row=0, column=0)
@@ -50,7 +51,7 @@ class tkinterWindow:
         description_food = tk.Label(third_window, text=select.ingredients_food_saved(index)[0], wraplength=350, bg="#FAFAFA").grid(row=2, column=4, rowspan=10, columnspan=2, sticky=N+S+E+W)
         label_ingredients = tk.Label(third_window, text="Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=13, column=4, sticky=N+E+S+W)
         select_nutriscore_food = select.nutriscore_food_saved(index)[0]
-        label_nutriscore_food = nutriscore_food = tk.Label(third_window, text=select_nutriscore_food[0], wraplength=350, bg="#88FE00").grid(row=13, column=5, sticky=N+S+E+W)
+        label_nutriscore_food = tk.Label(third_window, text=select_nutriscore_food[0], wraplength=350, bg="#88FE00").grid(row=13, column=5, sticky=N+S+E+W)
         if select_nutriscore_food == "a":
             nutriscore_food = label_nutriscore_food
         elif select_nutriscore_food == "b":
@@ -67,7 +68,7 @@ class tkinterWindow:
         label_ingredients = tk.Label(third_window, text="Link", wraplength=350, bg="#C9DFDC").grid(row=17, column=4, columnspan=2, sticky=N+E+S+W)
         link_food = tk.Label(third_window, text=select.link_food_saved(index)[0], wraplength=350, bg="#FAFAFA").grid(row=18, column=4, columnspan=2, sticky=N+S+E+W)
         button_subsitute = tk.Button(third_window, text="Valider", command=substitute_food_save, relief="solid", bg="#FEFEFE").grid(row=0, column=2)
-
+        third_window.mainloop()
     def saved_substitute():
         global get_index_food
         global get_index_substitute
@@ -223,7 +224,7 @@ class tkinterWindow:
         window.title("Database OpenFoodFact")
         window.geometry("950x400")
         # creation title
-        label_title = Label(window, text="Bienvenue dans la base de donnée OpenFoodFacts", font=("Helvetica", 40), fg="#41B77F").pack()
+        label_title = Label(window, text="Bienvenue dans la base de données OpenFoodFacts", font=("Helvetica", 40), fg="#41B77F").pack()
         # creation image
         width = 300
         height = 300
@@ -232,11 +233,12 @@ class tkinterWindow:
         canvas.create_image(width/2, height/2, image=image)
         canvas.pack()
         # creation button
-        button_connect = tk.Button(window, text="Trouver un aliment à remplacer", command=window.destroy).pack(side=LEFT, padx=100)
-        button_connect2 = tk.Button(window, text="Retrouver mes aliments substitués", command=substitute_food_save).pack(side=RIGHT, padx=100)
+        button_search = tk.Button(window, text="Trouver un aliment à remplacer", command=window.destroy).pack(side=LEFT, padx=100)
+        button_historic = tk.Button(window, text="Retrouver mes aliments substitués", command=substitute_food_save).pack(side=RIGHT, padx=100)
         # print window
         window.mainloop()
         second_window = tk.Tk()
+        second_window.title("Database OpenFoodFact")
         second_window.configure(bg="#CECECE")
         second_window.geometry("950x650")
         label_category = tk.Label(second_window, text="Catégories : ", bg="#9E9E9E").grid(row=0, column=0)

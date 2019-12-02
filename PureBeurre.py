@@ -20,11 +20,11 @@ class tkinterWindow:
         self.combobox_category.grid(row=0, column=1)
         label_food = tk.Label(self.second_window, text="Aliments : ", bg="#9E9E9E").grid(row=2, column=0)
         label_subsitute = tk.Label(self.second_window, text="Aliments à substituer :", bg="#9E9E9E").grid(row=0, column=5)
-        button_choice_food = Button(self.second_window, text="Valider", command=abc.get_ingredients).grid(row=3, column=1)
-        button_choice_category = Button(self.second_window, text="Valider", command=abc.get_category_food).grid(row=1, column=1)
-        button_choice_subsitute = tk.Button(self.second_window, text="Valider", command=abc.get_substitute).grid(row=1, column=6)
-        button_subsitute_food = tk.Button(self.second_window, text="Substituer aliment", command=abc.saved_substitute, bg="#FAFAFA").grid(row=28, column=5, sticky=W)
-        button_subsitute = tk.Button(self.second_window, text="Historique", command=abc.third_window, bg="#FAFAFA").grid(row=28, column=6, sticky=E)
+        button_choice_food = Button(self.second_window, text="Valider", command=tkinterW.get_ingredients).grid(row=3, column=1)
+        button_choice_category = Button(self.second_window, text="Valider", command=tkinterW.get_category_food).grid(row=1, column=1)
+        button_choice_subsitute = tk.Button(self.second_window, text="Valider", command=tkinterW.get_substitute).grid(row=1, column=6)
+        button_subsitute_food = tk.Button(self.second_window, text="Substituer aliment", command=tkinterW.substitute_saved, bg="#FAFAFA").grid(row=28, column=5, sticky=W)
+        button_subsitute = tk.Button(self.second_window, text="Historique", command=tkinterW.third_window, bg="#FAFAFA").grid(row=28, column=6, sticky=E)
         space = tk.Label(self.second_window, text="            ", bg="#CECECE"). grid(row=0, column=4)
         self.second_window.mainloop()
 
@@ -49,15 +49,15 @@ class tkinterWindow:
             label_ingredients = tk.Label(self.second_window, text="Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=17, column=0, sticky=N+E+S+W)
             select_nutriscore_food = select.nutriscore_food(self.get_index_food)[0]
             if select_nutriscore_food == "a":
-                nutriscore = tk.Label(self.second_window, text=select.nutriscore_food(self.get_index_food)[0], wraplength=350, bg="#88FE00").grid(row=17, column=1, sticky=N+S+E+W)
+                nutriscore = tk.Label(self.second_window, text=select_nutriscore_food, wraplength=350, bg="#88FE00").grid(row=17, column=1, sticky=N+S+E+W)
             elif select_nutriscore_food == "b":
-                nutriscore = tk.Label(self.second_window, text=select.nutriscore_food(self.get_index_food)[0], wraplength=350, bg="#C6F700").grid(row=17, column=1, sticky=N+S+E+W)
+                nutriscore = tk.Label(self.second_window, text=select_nutriscore_food, wraplength=350, bg="#C6F700").grid(row=17, column=1, sticky=N+S+E+W)
             elif select_nutriscore_food == "c":
-                nutriscore = tk.Label(self.second_window, text=select.nutriscore_food(self.get_index_food)[0], wraplength=350, bg="#F7D600").grid(row=17, column=1, sticky=N+S+E+W)
+                nutriscore = tk.Label(self.second_window, text=select_nutriscore_food, wraplength=350, bg="#F7D600").grid(row=17, column=1, sticky=N+S+E+W)
             elif select_nutriscore_food == "d":
-                nutriscore = tk.Label(self.second_window, text=select.nutriscore_food(self.get_index_food)[0], wraplength=350, bg="#F7A500").grid(row=17, column=1, sticky=N+S+E+W)
+                nutriscore = tk.Label(self.second_window, text=select_nutriscore_food, wraplength=350, bg="#F7A500").grid(row=17, column=1, sticky=N+S+E+W)
             elif select_nutriscore_food == "e":
-                nutriscore = tk.Label(self.second_window, text=select.nutriscore_food(self.get_index_food)[0], wraplength=350, bg="#F73200").grid(row=17, column=1, sticky=N+S+E+W)
+                nutriscore = tk.Label(self.second_window, text=select_nutriscore_food, wraplength=350, bg="#F73200").grid(row=17, column=1, sticky=N+S+E+W)
             space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=18, column=0, columnspan=2, sticky=N+S+E+W)
             label_ingredients = tk.Label(self.second_window, text="Store", wraplength=350, bg="#C9DFDC").grid(row=19, column=0, columnspan=2, sticky=N+E+S+W)
             data_store_food = tk.Label(self.second_window, text=select.store_food(self.get_index_food)[0], wraplength=350, bg="#FAFAFA").grid(row=20, column=0, columnspan=2, sticky=N+S+E+W)
@@ -77,15 +77,15 @@ class tkinterWindow:
             label_ingredients = tk.Label(self.second_window, text="Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=17, column=0, sticky=N+E+S+W)
             select_nutriscore_food = select.nutriscore_food(self.get_index_food)[0]
             if select_nutriscore_food == "a":
-                nutriscore = tk.Label(self.second_window, text=select.nutriscore_food(self.get_index_food)[0], wraplength=350, bg="#88FE00").grid(row=17, column=1, sticky=N+S+E+W)
+                nutriscore = tk.Label(self.second_window, text=select_nutriscore_food, wraplength=350, bg="#88FE00").grid(row=17, column=1, sticky=N+S+E+W)
             elif select_nutriscore_food == "b":
-                nutriscore = tk.Label(self.second_window, text=select.nutriscore_food(self.get_index_food)[0], wraplength=350, bg="#C6F700").grid(row=17, column=1, sticky=N+S+E+W)
+                nutriscore = tk.Label(self.second_window, text=select_nutriscore_food, wraplength=350, bg="#C6F700").grid(row=17, column=1, sticky=N+S+E+W)
             elif select_nutriscore_food == "c":
-                nutriscore = tk.Label(self.second_window, text=select.nutriscore_food(self.get_index_food)[0], wraplength=350, bg="#F7D600").grid(row=17, column=1, sticky=N+S+E+W)
+                nutriscore = tk.Label(self.second_window, text=select_nutriscore_food, wraplength=350, bg="#F7D600").grid(row=17, column=1, sticky=N+S+E+W)
             elif select_nutriscore_food == "d":
-                nutriscore = tk.Label(self.second_window, text=select.nutriscore_food(self.get_index_food)[0], wraplength=350, bg="#F7A500").grid(row=17, column=1, sticky=N+S+E+W)
+                nutriscore = tk.Label(self.second_window, text=select_nutriscore_food, wraplength=350, bg="#F7A500").grid(row=17, column=1, sticky=N+S+E+W)
             elif select_nutriscore_food == "e":
-                nutriscore = tk.Label(self.second_window, text=select.nutriscore_food(self.get_index_food)[0], wraplength=350, bg="#F73200").grid(row=17, column=1, sticky=N+S+E+W)
+                nutriscore = tk.Label(self.second_window, text=select_nutriscore_food, wraplength=350, bg="#F73200").grid(row=17, column=1, sticky=N+S+E+W)
             space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=18, column=0, columnspan=2, sticky=N+S+E+W)
             label_ingredients = tk.Label(self.second_window, text="Store", wraplength=350, bg="#C9DFDC").grid(row=19, column=0, columnspan=2, sticky=N+E+S+W)
             data_store_susbtitute = tk.Label(self.second_window, text=select.store_food(self.get_index_food)[0], wraplength=350, bg="#FAFAFA").grid(row=20, column=0, columnspan=2, sticky=N+S+E+W)
@@ -102,31 +102,26 @@ class tkinterWindow:
             self.get_index_substitute += 1
             self.get_index_substitute = str(self.get_index_substitute)
             label_ingredients = tk.Label(self.second_window, text="Ingredients", wraplength=350, bg="#C9DFDC").grid(row=4, column=5, columnspan=2, sticky=N+E+S+W)
-            ingredients_substitute = tk.Label(self.second_window, text=select.ingredients_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=5, rowspan=14, columnspan=2, sticky=N+S+E+W)
-            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=20, column=5, columnspan=2, sticky=N+S+E+W)
-            label_ingredients = tk.Label(self.second_window, text="Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=21, column=5, sticky=N+E+S+W)
+            ingredients_substitute = tk.Label(self.second_window, text=select.ingredients_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=5, rowspan=10, columnspan=2, sticky=N+S+E+W)
+            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=16, column=5, columnspan=2, sticky=N+S+E+W)
+            label_ingredients = tk.Label(self.second_window, text="Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=17, column=5, sticky=N+E+S+W)
             select_nutriscore_substitute = select.nutriscore_substitute(self.get_index_substitute)[0]
             if select_nutriscore_substitute == "a":
-                nutriscore_substitute = tk.Label(self.second_window, text=select.nutriscore_substitute(self.get_index_substitute)[0], wraplength=350, bg="#88FE00")
-                nutriscore_substitute.grid(row=21, column=6, sticky=N+S+E+W)
+                nutriscore_substitute = tk.Label(self.second_window, text=select_nutriscore_substitute, wraplength=350, bg="#88FE00").grid(row=17, column=6, sticky=N+S+E+W)
             elif select_nutriscore_substitute == "b":
-                nutriscore_substitute = tk.Label(self.second_window, text=select.nutriscore_substitute(self.get_index_substitute)[0], wraplength=350, bg="#C6F700")
-                nutriscore_substitute.grid(row=21, column=6, sticky=N+S+E+W)
+                nutriscore_substitute = tk.Label(self.second_window, text=select_nutriscore_substitute, wraplength=350, bg="#C6F700").grid(row=17, column=6, sticky=N+S+E+W)
             elif select_nutriscore_substitute == "c":
-                nutriscore_substitute = tk.Label(self.second_window, text=select.nutriscore_substitute(self.get_index_substitute)[0], wraplength=350, bg="#F7D600")
-                nutriscore_substitute.grid(row=21, column=6, sticky=N+S+E+W)
+                nutriscore_substitute = tk.Label(self.second_window, text=select_nutriscore_substitute, wraplength=350, bg="#F7D600").grid(row=17, column=6, sticky=N+S+E+W)
             elif select_nutriscore_substitute == "d":
-                nutriscore_substitute = tk.Label(self.second_window, text=select.nutriscore_substitute(self.get_index_substitute)[0], wraplength=350, bg="#F7A500")
-                nutriscore_substitute.grid(row=21, column=6, sticky=N+S+E+W)
+                nutriscore_substitute = tk.Label(self.second_window, text=select_nutriscore_substitute, wraplength=350, bg="#F7A500").grid(row=17, column=6, sticky=N+S+E+W)
             elif select_nutriscore_substitute == "e":
-                nutriscore_substitute = tk.Label(self.second_window, text=select.nutriscore_substitute(self.get_index_substitute)[0], wraplength=350, bg="#F73200")
-                nutriscore_substitute.grid(row=21, column=6, sticky=N+S+E+W)
-            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=22, column=5, columnspan=2, sticky=N+S+E+W)
-            label_ingredients = tk.Label(self.second_window, text="Store", wraplength=350, bg="#C9DFDC").grid(row=23, column=5, columnspan=2, sticky=N+E+S+W)
-            store_substitute = tk.Label(self.second_window, text=select.store_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=24, column=5, columnspan=2, sticky=N+S+E+W)
-            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=25, column=5, columnspan=2, sticky=N+S+E+W)
-            label_ingredients = tk.Label(self.second_window, text="Link", wraplength=350, bg="#C9DFDC").grid(row=26, column=5, columnspan=2, sticky=N+E+S+W)
-            link_substitute = tk.Label(self.second_window, text=select.link_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=27, column=5, columnspan=2, sticky=N+S+E+W)
+                nutriscore_substitute = tk.Label(self.second_window, text=select_nutriscore_substitute, wraplength=350, bg="#F73200").grid(row=17, column=6, sticky=N+S+E+W)
+            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=18, column=5, columnspan=2, sticky=N+S+E+W)
+            label_ingredients = tk.Label(self.second_window, text="Store", wraplength=350, bg="#C9DFDC").grid(row=19, column=5, columnspan=2, sticky=N+E+S+W)
+            store_substitute = tk.Label(self.second_window, text=select.store_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=20, column=5, columnspan=2, sticky=N+S+E+W)
+            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=21, column=5, columnspan=2, sticky=N+S+E+W)
+            label_ingredients = tk.Label(self.second_window, text="Link", wraplength=350, bg="#C9DFDC").grid(row=22, column=5, columnspan=2, sticky=N+E+S+W)
+            link_substitute = tk.Label(self.second_window, text=select.link_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=23, column=5, columnspan=2, sticky=N+S+E+W)
             self.second_window.mainloop()
         elif self.get_index >= 2:
             self.get_index_substitute = self.combobox_substitute.current()
@@ -135,31 +130,26 @@ class tkinterWindow:
                 self.get_index_substitute += 25
             self.get_index_substitute = str(self.get_index_substitute)
             label_ingredients = tk.Label(self.second_window, text="Ingredients", wraplength=350, bg="#C9DFDC").grid(row=4, column=5, columnspan=2, sticky=N+E+S+W)
-            ingredients_susstitute = tk.Label(self.second_window, text=select.ingredients_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=5, rowspan=15, columnspan=2, sticky=N+S+E+W)
-            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=20, column=5, columnspan=2, sticky=N+S+E+W)
-            label_ingredients = tk.Label(self.second_window, text="Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=21, column=5, sticky=N+E+S+W)
+            ingredients_susstitute = tk.Label(self.second_window, text=select.ingredients_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=5, column=5, rowspan=10, columnspan=2, sticky=N+S+E+W)
+            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=16, column=5, columnspan=2, sticky=N+S+E+W)
+            label_ingredients = tk.Label(self.second_window, text="Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=17, column=5, sticky=N+E+S+W)
             select_nutriscore_substitute = select.nutriscore_substitute(self.get_index_substitute)[0]
             if select_nutriscore_substitute == "a":
-                nutriscore_substitute = tk.Label(self.second_window, text=select.nutriscore_substitute(self.get_index_substitute)[0], wraplength=350, bg="#88FE00")
-                nutriscore_substitute.grid(row=21, column=6, sticky=N+S+E+W)
+                nutriscore_substitute = tk.Label(self.second_window, text=select_nutriscore_substitute, wraplength=350, bg="#88FE00").grid(row=17, column=6, sticky=N+S+E+W)
             elif select_nutriscore_substitute == "b":
-                nutriscore_substitute = tk.Label(self.second_window, text=select.nutriscore_substitute(self.get_index_substitute)[0], wraplength=350, bg="#C6F700")
-                nutriscore_substitute.grid(row=21, column=6, sticky=N+S+E+W)
+                nutriscore_substitute = tk.Label(self.second_window, text=select_nutriscore_substitute, wraplength=350, bg="#C6F700").grid(row=17, column=6, sticky=N+S+E+W)
             elif select_nutriscore_substitute == "c":
-                nutriscore_substitute = tk.Label(self.second_window, text=select.nutriscore_substitute(self.get_index_substitute)[0], wraplength=350, bg="#F7D600")
-                nutriscore_substitute.grid(row=21, column=6, sticky=N+S+E+W)
+                nutriscore_substitute = tk.Label(self.second_window, text=select_nutriscore_substitute, wraplength=350, bg="#F7D600").grid(row=17, column=6, sticky=N+S+E+W)
             elif select_nutriscore_substitute == "d":
-                nutriscore_substitute = tk.Label(self.second_window, text=select.nutriscore_substitute(self.get_index_substitute)[0], wraplength=350, bg="#F7A500")
-                nutriscore_substitute.grid(row=21, column=6, sticky=N+S+E+W)
+                nutriscore_substitute = tk.Label(self.second_window, text=select_nutriscore_substitute, wraplength=350, bg="#F7A500").grid(row=17, column=6, sticky=N+S+E+W)
             elif select_nutriscore_substitute == "e":
-                nutriscore_substitute = tk.Label(self.second_window, text=select.nutriscore_substitute(self.get_index_substitute)[0], wraplength=350, bg="#F73200")
-                nutriscore_substitute.grid(row=21, column=6, sticky=N+S+E+W)
-            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=22, column=5, columnspan=2, sticky=N+S+E+W)
-            label_ingredients = tk.Label(self.second_window, text="Store", wraplength=350, bg="#C9DFDC").grid(row=23, column=5, columnspan=2, sticky=N+E+S+W)
-            store_substitute = tk.Label(self.second_window, text=select.store_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=24, column=5, columnspan=2, sticky=N+S+E+W)
-            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=25, column=5, columnspan=2, sticky=N+S+E+W)
-            label_ingredients = tk.Label(self.second_window, text="Link", wraplength=350, bg="#C9DFDC").grid(row=26, column=5, columnspan=2, sticky=N+E+S+W)
-            link_substitute = tk.Label(self.second_window, text=select.link_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=27, column=5, columnspan=2, sticky=N+S+E+W)
+                nutriscore_substitute = tk.Label(self.second_window, text=select_nutriscore_substitute, wraplength=350, bg="#F73200").grid(row=17, column=6, sticky=N+S+E+W)
+            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=18, column=5, columnspan=2, sticky=N+S+E+W)
+            label_ingredients = tk.Label(self.second_window, text="Store", wraplength=350, bg="#C9DFDC").grid(row=19, column=5, columnspan=2, sticky=N+E+S+W)
+            store_substitute = tk.Label(self.second_window, text=select.store_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=20, column=5, columnspan=2, sticky=N+S+E+W)
+            space = tk.Label(self.second_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=21, column=5, columnspan=2, sticky=N+S+E+W)
+            label_ingredients = tk.Label(self.second_window, text="Link", wraplength=350, bg="#C9DFDC").grid(row=22, column=5, columnspan=2, sticky=N+E+S+W)
+            link_substitute = tk.Label(self.second_window, text=select.link_substitute(self.get_index_substitute)[0], wraplength=350, bg="#FAFAFA").grid(row=23, column=5, columnspan=2, sticky=N+S+E+W)
             self.second_window.mainloop()
 
     def third_window(self):
@@ -169,17 +159,18 @@ class tkinterWindow:
         self.third_window.geometry("950x350")
         self.combobox_substitute_save = ttk.Combobox(self.third_window, values=select.substitute_save(), width=40)
         self.combobox_substitute_save.grid(row=0, column=1)
-        self.substitute_food_save()
+        self.substitute_food_saved()
 
-    def saved_substitute(self):
+    def substitute_saved(self):
         select.substitute_saved(self.get_index_substitute)
         select.food_saved(self.get_index_food)
 
-    def substitute_food_save(self):
+    def substitute_food_saved(self):
         label_subsitute = tk.Label(self.third_window, text="Aliments : ", relief="solid", bg="#FEFEFE").grid(row=0, column=0)
         data_susbstitute = []
         connexion_data_base = mysql.connector.connect(user=MYSQL_USER, password=MYSQL_PWD, host=MYSQL_HOST, database=MYSQL_DATABASE)
         index = self.combobox_substitute_save.current()
+        index += 1
         index = str(index)
         label_ingredients = tk.Label(self.third_window, text="Ingredients", wraplength=350, bg="#C9DFDC").grid(row=1, column=0, columnspan=2, sticky=N+E+S+W)
         ingredients_substitute = tk.Label(self.third_window, text=select.ingredients_substitute_saved(index), wraplength=350, bg="#FAFAFA")
@@ -219,17 +210,16 @@ class tkinterWindow:
             nutriscore_food = tk.Label(self.third_window, text=select_nutriscore_food, wraplength=350, bg="#F73200").grid(row=13, column=5, sticky=N+S+E+W)
         label_ingredients = tk.Label(self.third_window, text="Store", wraplength=350, bg="#C9DFDC").grid(row=14, column=4, columnspan=2, sticky=N+E+S+W)
         store_food = tk.Label(self.third_window, text=select.store_food_saved(index), wraplength=350, bg="#FAFAFA").grid(row=15, column=4, columnspan=2, sticky=N+S+E+W)
-        space_column = tk.Label(self.third_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=16, column=3, columnspan=2, sticky=N+S+E+W)
+        space_column = tk.Label(self.third_window, text="  ", wraplength=350, bg="#FAFAFA").grid(row=16, column=4, columnspan=2, sticky=N+S+E+W)
         label_ingredients = tk.Label(self.third_window, text="Link", wraplength=350, bg="#C9DFDC").grid(row=17, column=4, columnspan=2, sticky=N+E+S+W)
         link_food = tk.Label(self.third_window, text=select.link_food_saved(index), wraplength=350, bg="#FAFAFA").grid(row=18, column=4, columnspan=2, sticky=N+S+E+W)
-        button_subsitute = tk.Button(self.third_window, text="Valider", command=self.substitute_food_save, relief="solid", bg="#FEFEFE").grid(row=0, column=2)
+        button_subsitute = tk.Button(self.third_window, text="Valider", command=self.substitute_food_saved, relief="solid", bg="#FEFEFE").grid(row=0, column=2)
         self.third_window.mainloop()
 
 
 
 if __name__ == "__main__":
     # creation window
-    abc = tkinterWindow()
     window = tk.Tk()
     # format window
     window.title("Database OpenFoodFact")
@@ -244,7 +234,8 @@ if __name__ == "__main__":
     canvas.create_image(width/2, height/2, image=image)
     canvas.pack()
     # creation button
-    button_search = tk.Button(window, text="Trouver un aliment à remplacer", command=abc.second_window).pack(side=LEFT, padx=100)
-    button_historic = tk.Button(window, text="Retrouver mes aliments substitués", command=abc.third_window).pack(side=RIGHT, padx=100)
+    tkinterW = tkinterWindow()
+    button_search = tk.Button(window, text="Trouver un aliment à remplacer", command=tkinterW.second_window).pack(side=LEFT, padx=100)
+    button_historic = tk.Button(window, text="Retrouver mes aliments substitués", command=tkinterW.third_window).pack(side=RIGHT, padx=100)
     window.mainloop()
 

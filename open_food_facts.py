@@ -1,21 +1,22 @@
 # -*- coding: utf-8 -*-
+'''Mysql module and module constant from my file constant.py who import the data connexion'''
 import mysql.connector
 import requests
-from Constant import *
-
+from constant import *
 
 class OpenFoodFact:
+    '''Class that manages the data retrievement'''
     def __init__(self):
-        self.connexion_data_base = mysql.connector.connect(user=MYSQL_USER, password=MYSQL_PWD, host=MYSQL_HOST, database=MYSQL_DATABASE)
-        self.data_base = dataBaseMySql()
-        self.data_base.delete_table()
+        self.connexion_data_base = mysql.connector.connect(user=MYSQL_USER, password=MYSQL_PWD,
+                                                           host=MYSQL_HOST, database=MYSQL_DATABASE)
+        self.data_base = DataBaseMySql()
         self.data_base.create_data_base()
         self.get_category()
         self.get_food()
         self.get_substitute()
 
     def get_category(self):
-        '''get category from API's openfoodfacts'''
+        '''Get category from API's openfoodfacts'''
         resp_category = requests.get('https://fr.openfoodfacts.org/categories&json=1')
         data_category_json = resp_category.json()
         data_tags_category = data_category_json.get('tags')
@@ -24,6 +25,7 @@ class OpenFoodFact:
             self.data_base.insert_data_category(data_name_category[i])
 
     def get_food(self):
+        '''Get food from API's openfoodfacts'''
         for i in range(1, 11):
             nb_init_category = i
             nb_food = 10
@@ -56,10 +58,12 @@ class OpenFoodFact:
                 nutriscore = [d.get('nutriscore_grade') for d in data_food]
                 store = [d.get('stores') for d in data_food]
                 link = [d.get('link') for d in data_food]
-                self.data_base.insert_data_food(nb_category, food[j], ingredients[j], nutriscore[j], store[j], link[j])
+                self.data_base.insert_data_food(nb_category, food[j],
+                                                ingredients[j], nutriscore[j],
+                                                store[j], link[j])
 
     def get_substitute(self):
-
+        '''Get substitute from API's openfoodfacts'''
         for i in range(1, 11):
             nb_init_substitute = i
             nb_substitute = 35
@@ -95,11 +99,11 @@ class OpenFoodFact:
                 self.data_base.insert_substitute_food(nb_category, food[j], ingredients[j], nutriscore[j], store[j], link[j])
 
 
-class dataBaseMySql:
+class DataBaseMySql:
+    '''Class that manages the creation database and insertion of data'''
     def __init__(self):
-        self.connexion_data_base = mysql.connector.connect(user=MYSQL_USER, password=MYSQL_PWD, host=MYSQL_HOST, database=MYSQL_DATABASE)
-
-    def delete_table(self):
+        self.connexion_data_base = mysql.connector.connect(user=MYSQL_USER, password=MYSQL_PWD,
+                                                           host=MYSQL_HOST, database=MYSQL_DATABASE)
         self.cursor = self.connexion_data_base.cursor()
         self.cursor.execute("DROP TABLE IF EXISTS Food")
         self.cursor.execute("DROP TABLE IF EXISTS Substitute")
@@ -109,6 +113,10 @@ class dataBaseMySql:
         self.connexion_data_base.commit()
 
     def create_data_base(self):
+        '''
+            Creation of the table in the database openfoodfacts
+            Inserting data with the last three method
+        '''
         self.cursor = self.connexion_data_base.cursor()
         self.cursor.execute("""
             CREATE TABLE Category (
@@ -168,26 +176,12 @@ class dataBaseMySql:
                 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
                 """)
 
-        self.cursor.execute("""
-            ALTER TABLE Food ADD CONSTRAINT category_food_fk
-            FOREIGN KEY (id_category)
-            REFERENCES Category (id_category)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
-            """)
-
-        self.cursor.execute("""
-            ALTER TABLE Substitute ADD CONSTRAINT category_substitute_fk
-            FOREIGN KEY (id_category)
-            REFERENCES Category (id_category)
-            ON DELETE NO ACTION
-            ON UPDATE NO ACTION
-            """)
 
         self.connexion_data_base.commit()
         self.cursor.close()
 
     def insert_data_category(self, category):
+        '''Method for insert data category in my database'''
         self.cursor = self.connexion_data_base.cursor()
         add_category = (""" INSERT INTO Category (category)
                             VALUES("{name_category}")""".format(name_category=category))
@@ -196,20 +190,26 @@ class dataBaseMySql:
         self.cursor.close()
 
     def insert_data_food(self, id_category, food, ingredients, nutriscore, store, link):
+        '''Method for insert data food in my database'''
         self.cursor = self.connexion_data_base.cursor()
         add_food = (""" INSERT INTO Food (id_category, food, ingredients, nutriscore, store, link)
-                        VALUES("{cat_save}", "{name_food}", "{nb_ingredients}", "{nutri_score}", "{nb_store}", "{product_link}")""".format(cat_save=id_category, name_food=food, nb_ingredients=ingredients, nutri_score=nutriscore, nb_store=store, product_link=link))
+                        VALUES("{cat_save}", "{name_food}", "{nb_ingredients}", "{nutri_score}", "{nb_store}", "{product_link}")"""
+                    .format(cat_save=id_category, name_food=food, nb_ingredients=ingredients, nutri_score=nutriscore,
+                            nb_store=store, product_link=link))
         self.cursor.execute(add_food)
         self.connexion_data_base.commit()
         self.cursor.close()
 
     def insert_substitute_food(self, id_category, food, ingredients, nutriscore, store, link):
+        '''Method for insert data substitute in my database'''
         self.cursor = self.connexion_data_base.cursor()
         add_substitute = (""" INSERT INTO Substitute (id_category, substitute, ingredients, nutriscore,  store, link)
-                            VALUES("{category_save}", "{name_food}", "{nb_ingredients}", "{nutri_score}", "{nb_store}", "{product_link}")""".format(category_save=id_category, name_food=food, nb_ingredients=ingredients, nutri_score=nutriscore, nb_store=store, product_link=link))
+                              VALUES("{category_save}", "{name_food}", "{nb_ingredients}", "{nutri_score}", "{nb_store}", "{product_link}")"""
+                          .format(category_save=id_category, name_food=food, nb_ingredients=ingredients, nutri_score=nutriscore,
+                                  nb_store=store, product_link=link))
         self.cursor.execute(add_substitute)
         self.connexion_data_base.commit()
         self.cursor.close()
 
 
-create_data_base = OpenFoodFact()
+CREATE_DATA_BASE = OpenFoodFact()

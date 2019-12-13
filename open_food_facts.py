@@ -5,6 +5,7 @@ import requests
 from constant import *
 
 class OpenFoodFact:
+
     '''Class that manages the data retrievement'''
     def __init__(self):
         self.connexion_data_base = mysql.connector.connect(user=MYSQL_USER, password=MYSQL_PWD,
@@ -48,9 +49,6 @@ class OpenFoodFact:
             r_food = requests.get('https://fr.openfoodfacts.org/cgi/search.pl', params=parameters)
             food_json = r_food.json()
             data_food = food_json.get('products')
-            food_id = ("SELECT id_category FROM Category WHERE id_category = "+nb_category)
-            cursor.execute(food_id)
-            food_id_saved = cursor.fetchone()[0]
 
             for j in range(nb_food):
                 food = [d.get('product_name_fr') for d in data_food]
@@ -86,9 +84,6 @@ class OpenFoodFact:
             request_substitute = requests.get('https://fr.openfoodfacts.org/cgi/search.pl', params=parameters)
             subsitute_json = request_substitute.json()
             data_substitute = subsitute_json.get('products')
-            substitute_id = ("SELECT id_category FROM Category WHERE id_category = "+nb_category)
-            cursor.execute(substitute_id)
-            food_id_saved = cursor.fetchone()[0]
 
             for j in range(10, 35):
                 food = [d.get('product_name_fr') for d in data_substitute]
@@ -175,8 +170,7 @@ class DataBaseMySql:
                 PRIMARY KEY (id)
                 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
                 """)
-
-
+        
         self.connexion_data_base.commit()
         self.cursor.close()
 

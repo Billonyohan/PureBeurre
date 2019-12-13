@@ -13,15 +13,15 @@ Sur cette page vous devrez tout d'abord choisir dans la liste déroulante, la ca
 Une fois votre choix d'aliment validé, s'affichera alors les ingrédients, le nutriscore, le magasin ou vous pouvez l'acheter et le lien de l'aliment dans la base de données d'openfoodfacts.
 
 
-Sur cette m'eame page, vous pouvez substituer l'aliment que vous avez sélectionné, gr'e2ce à la liste déroulante qui affiche les aliments qui appartiennent à la catégorie de l'aliment que vous avez précédemment sélectionné.
+Sur cette m'eame page, vous pouvez substituer l'aliment que vous avez sélectionné, gràce à la liste déroulante qui affiche les aliments qui appartiennent à la catégorie de l'aliment que vous avez précédemment sélectionné.
 
 
-Vous pouvez enfin substituer l'aliments en cliquant simplement sur le bouton '93Substituer aliment'94.
+Vous pouvez enfin substituer l'aliments en cliquant simplement sur le bouton "Substituer aliment".
 
 
-Pour accéder à l'historique des aliments que vous avez substitué cliquez, sur cette m'eame page, sur le bouton '93Historique'94.
+Pour accéder à l'historique des aliments que vous avez substitué cliquez, sur cette m'eame page, sur le bouton "Historique".
 
-Vous pouvez aussi accédez directement à cette page, quand vous démarrez l'application sur le bouton '93Retrouver mes aliments substitués'94.
+Vous pouvez aussi accédez directement à cette page, quand vous démarrez l'application sur le bouton "Retrouver mes aliments substitués".
 
 
 Une fois sur cette page, choisissez tout simplement l'aliment qui vous sert de substitut, puis valider.
@@ -41,9 +41,9 @@ Une fois validé, sur votre page s'affichera sur votre gauche l'aliments qui vou
 
 
 
-La startup Pur Beurre travaille connait bien les habitudes alimentaires fran'e7aises. Leur restaurant, Ratatouille, remporte un succ'e8s croissant et attire toujours plus de visiteurs sur la butte de Montmartre.
+La startup Pur Beurre travaille connait bien les habitudes alimentaires françaises. Leur restaurant, Ratatouille, remporte un succès croissant et attire toujours plus de visiteurs sur la butte de Montmartre.
 
-L'équipe a remarqué que leurs utilisateurs voulaient bien changer leur alimentation mais ne savaient pas bien par quoi commencer. Remplacer le Nutella par une p'e2te aux noisettes, oui, mais laquelle ? Et dans quel magasin l'acheter ? Leur idée est donc de créer un programme qui interagirait avec la base Open Food Facts pour en récupérer les aliments, les comparer et proposer à l'utilisateur un substitut plus sain à l'aliment qui lui fait envie.
+L'équipe a remarqué que leurs utilisateurs voulaient bien changer leur alimentation mais ne savaient pas bien par quoi commencer. Remplacer le Nutella par une pàte aux noisettes, oui, mais laquelle ? Et dans quel magasin l'acheter ? Leur idée est donc de créer un programme qui interagirait avec la base Open Food Facts pour en récupérer les aliments, les comparer et proposer à l'utilisateur un substitut plus sain à l'aliment qui lui fait envie.
 
 Cahier des charges
 
@@ -66,20 +66,20 @@ L'utilisateur sélectionne 1. Le programme pose les questions suivantes à l'uti
 
 -   Recherche d'aliments dans la base Open Food Facts.
 -   L'utilisateur interagit avec le programme dans le terminal, mais si vous souhaitez développer une interface graphique vous pouvez,
--   Si l'utilisateur entre un caract'e8re qui n'est pas un chiffre, le programme doit lui répéter la question,
+-   Si l'utilisateur entre un caractère qui n'est pas un chiffre, le programme doit lui répéter la question,
 -   La recherche doit s'effectuer sur une base MySql.
 
 Etapes
 
 **1 - Organiser son travail**
 
-Découpez votre programme en user stories puis en t'e2ches et sous-t'e2ches. Créez un tableau agile et affectez des deadlines.
+Découpez votre programme en user stories puis en tàches et sous-tàches. Créez un tableau agile et affectez des deadlines.
 
 Avant de coder, initialisez un repo Github et faites votre premier push.
 
 Puis commencez à écrire la documentation. Oui, en premier ! Je vous propose une méthodologie de travail assez reconnue dans le monde du développement : le "Doc Driven Development" ou "Readme Driven Development". Créez simplement un fichier texte appelé Readme.txt.
 
-Vous pouvez utiliser la syntaxe [**Markdown**](https://guides.github.com/features/mastering-markdown/) si elle vous est déjà famili'e8re. Pour cela, appelez simplement votre document Readme.md.
+Vous pouvez utiliser la syntaxe [**Markdown**](https://guides.github.com/features/mastering-markdown/) si elle vous est déjà familière. Pour cela, appelez simplement votre document Readme.md.
 
 Lorsque vous commencerez une nouvelle fonctionnalité, écrivez en premier la documentation. Que souhaitez-vous que votre programme fasse ? Comment le développeur comprendra le code ? Puis codez le nécessaire pour que votre programme "valide" le Readme.
 
@@ -89,11 +89,11 @@ Avant de vous atteler aux différentes fonctionnalités de votre Readme, commenc
 
 Puis intéressez-vous aux données externes. La base Open Food Facts a une API (expérimentale pour le moment) qui vous permet de récupérer les données voulues au format JSON. Vous pouvez consulter la [documentation de cette API](http://en.wiki.openfoodfacts.org/Project:API).
 
-Créez la base de données : tables et clés étrang'e8res.
+Créez la base de données : tables et clés étrangères.
 
-Puis écrivez un script Python qui ins'e8rera les données récoltées de l'API dans votre base.
+Puis écrivez un script Python qui insèrera les données récoltées de l'API dans votre base.
 
-Les utilisateurs de la startup Pur Beurre sont fran'e7ais et font probablement leurs courses en France. Il n'est pas nécessaire d'importer l'intégralité de la base, d'autant plus qu'elle est si grande que cela ralentirait considérablement votre programme (et ferait fuir vos utilisateurs).
+Les utilisateurs de la startup Pur Beurre sont français et font probablement leurs courses en France. Il n'est pas nécessaire d'importer l'intégralité de la base, d'autant plus qu'elle est si grande que cela ralentirait considérablement votre programme (et ferait fuir vos utilisateurs).
 
 **3 - Construire le programme**
 
@@ -103,17 +103,17 @@ Listez les fonctionnalités de votre programme pour vous interroger sur les resp
 
 Vous avez la base de données et vous avez les classes. Bravo ! 'c0 présent, permettez à votre utilisateur d'interagir avec la base de données.
 
-Commencez par travailler sur le syst'e8me de question réponse (input, validation des champs). Puis concentrez-vous sur la recherche : quelles requ'eates SQL ? Dans quelle(s) table(s) ?
+Commencez par travailler sur le système de question réponse (input, validation des champs). Puis concentrez-vous sur la recherche : quelles requ'eates SQL ? Dans quelle(s) table(s) ?
 
 Enfin, cherchez comment enregistrer les données générées par le programme pour que l'utilisateur les retrouve.
 
 Livrables
 
--   Mod'e8le physique de données (ou mod'e8le relationnel) et utilisant l'outil informatique de votre choix (pas de dessin à main levée !).
+-   Modèle physique de données (ou modèle relationnel) et utilisant l'outil informatique de votre choix (pas de dessin à main levée !).
 -   Script de création de votre base de données
 -   Code source publié sur Github
 -   Tableau Trello, Taiga ou Pivotal Tracker.
--   Document texte expliquant la démarche choisie, les difficultés rencontrées et les solutions trouvées et incluant le lien vers votre code source sur Github. Développez notamment le choix de l'algorithme et la méthodologie de projet choisie. Expliquez également les difficultés rencontrées et les solutions trouvées. Le document doit 'eatre en format pdf et ne pas excéder 2 pages A4. Il peut 'eatre rédigé en anglais ou en fran'e7ais, au choix, mais prenez bien en considération que les fautes d'orthographe et de grammaire seront évaluées !
+-   Document texte expliquant la démarche choisie, les difficultés rencontrées et les solutions trouvées et incluant le lien vers votre code source sur Github. Développez notamment le choix de l'algorithme et la méthodologie de projet choisie. Expliquez également les difficultés rencontrées et les solutions trouvées. Le document doit 'eatre en format pdf et ne pas excéder 2 pages A4. Il peut 'eatre rédigé en anglais ou en français, au choix, mais prenez bien en considération que les fautes d'orthographe et de grammaire seront évaluées !
 
 Contraintes
 

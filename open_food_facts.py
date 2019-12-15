@@ -170,6 +170,22 @@ class DataBaseMySql:
                 PRIMARY KEY (id)
                 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
                 """)
+
+        self.cursor.execute("""
+            ALTER TABLE Food ADD CONSTRAINT category_food_fk
+            FOREIGN KEY (id_category)
+            REFERENCES Category (id_category)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION;
+            """)
+
+        self.cursor.execute("""
+            ALTER TABLE Substitute ADD CONSTRAINT category_substitute_fk
+            FOREIGN KEY (id_category)
+            REFERENCES Category (id_category)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION;
+            """)
         
         self.connexion_data_base.commit()
         self.cursor.close()

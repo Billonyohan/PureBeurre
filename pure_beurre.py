@@ -222,9 +222,9 @@ class TkinterWindow:
             tk.Label(self.frame2, text="Nutriscore", wraplength=350, bg="#C9DFDC").grid(row=13, column=0, sticky=N+E+S+W)
             select_nutriscore_substitute = SELECT.nutriscore_substitute_saved(index)[0]
             if select_nutriscore_substitute == "a":
-                tk.Label(self.frame2, text=select_nutriscore_substitute, wraplength=350, bg="#88FE00").grid(row=13, column=5, sticky=N+S+E+W)
+                tk.Label(self.frame2, text=select_nutriscore_substitute, wraplength=350, bg="#88FE00").grid(row=13, column=1, sticky=N+S+E+W)
             elif select_nutriscore_substitute == "b":
-                tk.Label(self.frame2, text=select_nutriscore_substitute, wraplength=350, bg="#C6F700").grid(row=13, column=5, sticky=N+S+E+W)
+                tk.Label(self.frame2, text=select_nutriscore_substitute, wraplength=350, bg="#C6F700").grid(row=13, column=1, sticky=N+S+E+W)
             elif select_nutriscore_substitute == "c":
                 tk.Label(self.frame2, text=select_nutriscore_substitute, wraplength=350, bg="#F7D600").grid(row=13, column=1, sticky=N+S+E+W)
             elif select_nutriscore_substitute == "d":

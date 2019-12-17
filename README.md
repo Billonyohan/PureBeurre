@@ -1,7 +1,11 @@
-# Utilisation de l'application OpenFoodFacts
+# Installation et utilisation de l'application OpenFoodFacts 
+
+- Créez votre base de données MySQL.
+
+- Configurez le fichier constant.py avec vos données de connexion MySQL.
 
 
-Démmarez le fichier pure_beurre.py
+- Une fois ces deux étapes faites, démmarez le fichier pure_beurre.py
 
 Arrivé sur la page principale deux choix s'offre à vous, soit vous souhaitez accéder à la base de données openfoodfacts, soit vous accédez à l'historique de vos aliments substitués.
 
@@ -33,7 +37,13 @@ Une fois validé, sur votre page s'affichera sur votre gauche l'aliments qui vou
 
 
 
+***
 
+---
+
+- - -
+
+*    *    *
 
 
 

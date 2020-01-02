@@ -1,4 +1,4 @@
-MYSQL_USER = 'name'
+MYSQL_USER = 'yohan'
 MYSQL_HOST = 'localhost'
-MYSQL_PWD = 'password'
-MYSQL_DATABASE = 'data_base_name'
+MYSQL_PWD = 'logitech'
+MYSQL_DATABASE = 'openfoodfact'

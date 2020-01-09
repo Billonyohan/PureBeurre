@@ -5,7 +5,7 @@
 - Configurez le fichier constant.py avec vos données de connexion MySQL.
 
 
-- Une fois ces deux étapes faites, démmarez le fichier pure_beurre.py
+- Une fois ces deux étapes faites, démarrez le fichier pure_beurre.py
 
 Arrivé sur la page principale deux choix s'offre à vous, soit vous souhaitez accéder à la base de données openfoodfacts, soit vous accédez à l'historique de vos aliments substitués.
 
